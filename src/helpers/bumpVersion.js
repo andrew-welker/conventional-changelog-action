@@ -23,7 +23,9 @@ module.exports = async (releaseType, version) => {
     const fallbackVersion = core.getInput('fallback-version')
 
     if (fallbackVersion) {
-      newVersion = semver.valid(fallbackVersion)
+      const fullVersion = prerelease ? `${fallbackVersion}-${identifier}.0` : fallbackVersion;
+
+      newVersion = semver.valid(fullVersion)
     }
 
     if (!newVersion) {
