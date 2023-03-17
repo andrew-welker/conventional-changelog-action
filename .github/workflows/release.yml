@@ -17,8 +17,7 @@ jobs:
       - name: Generate changelog
         id: changelog
         uses: ./
-        with:         
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        with:
           create-summary: true
 
       - name: Create Release
