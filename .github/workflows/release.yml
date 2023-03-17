@@ -17,15 +17,12 @@ jobs:
       - name: Generate changelog
         id: changelog
         uses: ./
-        with:
-          github-token: ${{ secrets.github_token }}
+        with:          
           create-summary: true
 
       - name: Create Release
         uses: actions/create-release@v1
-        if: steps.changelog.outputs.skipped != 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+        if: steps.changelog.outputs.skipped != 'true'          
         with:
           tag_name: ${{ steps.changelog.outputs.tag }}
           release_name: ${{ steps.changelog.outputs.tag }}
